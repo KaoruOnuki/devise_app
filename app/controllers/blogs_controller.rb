@@ -29,6 +29,7 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   def create
     @blog = Blog.new(blog_params)
+    @blog.user_id = current_user.id
 
     respond_to do |format|
       if @blog.save
@@ -67,6 +68,7 @@ class BlogsController < ApplicationController
 
   def confirm
     @blog = Blog.new(blog_params)
+    @blog.user_id = current_user.id
     render :new if @blog.invalid?
   end
 
